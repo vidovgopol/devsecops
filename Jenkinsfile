@@ -73,7 +73,7 @@ pipeline {
                 ]) {
            sh 'printenv'
            sh 'echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY -u "$DOCKER_USER" --password-stdin'
-           sh 'sudo docker build -t vidovgopol/numeric-app:""$GIT_COMMIT"" .'
+           sh 'docker build -t vidovgopol/numeric-app:""$GIT_COMMIT"" .'
            sh 'docker push vidovgopol/numeric-app:""$GIT_COMMIT""'
          }
        }
