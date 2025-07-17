@@ -102,7 +102,7 @@ pipeline {
            "Rollout Status": {
              withKubeConfig([credentialsId: 'kubeconfig']) {
 //               sh "bash k8s-deployment-rollout-status.sh"
-                sh "echo "test""
+                sh "ping 1.1.1.1 -n 1"
              }
            }
          )
