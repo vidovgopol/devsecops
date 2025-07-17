@@ -98,15 +98,16 @@ pipeline {
              withKubeConfig([credentialsId: 'kubeconfig']) {
                sh "bash k8s-deployment.sh"
              }
-//           },
-//           "Rollout Status": {
-//             withKubeConfig([credentialsId: 'kubeconfig']) {
+           },
+           "Rollout Status": {
+             withKubeConfig([credentialsId: 'kubeconfig']) {
 //               sh "bash k8s-deployment-rollout-status.sh"
+                sh "echo ""
              }
            }
          )
        }
-
+     }
 
  //    stage('Integration Tests - DEV') {
  //      steps {
