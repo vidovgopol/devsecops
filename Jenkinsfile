@@ -7,7 +7,7 @@ pipeline {
     deploymentName = "devsecops"
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
-    imageName = "siddharth67/numeric-app:${GIT_COMMIT}"
+    imageName = "vidovgopol/numeric-app:${GIT_COMMIT}"
     applicationURL="http://devsecops-demo.eastus.cloudapp.azure.com"
     applicationURI="/increment/99"
   }
@@ -91,22 +91,22 @@ pipeline {
  //      }
  //    }
 
- //    stage('K8S Deployment - DEV') {
- //      steps {
- //        parallel(
- //          "Deployment": {
- //            withKubeConfig([credentialsId: 'kubeconfig']) {
- //              sh "bash k8s-deployment.sh"
- //            }
- //          },
- //          "Rollout Status": {
- //            withKubeConfig([credentialsId: 'kubeconfig']) {
- //              sh "bash k8s-deployment-rollout-status.sh"
- //            }
- //          }
- //        )
- //      }
- //    }
+     stage('K8S Deployment - DEV') {
+       steps {
+         parallel(
+           "Deployment": {
+             withKubeConfig([credentialsId: 'kubeconfig']) {
+               sh "bash k8s-deployment.sh"
+             }
+           },
+           "Rollout Status": {
+             withKubeConfig([credentialsId: 'kubeconfig']) {
+               sh "bash k8s-deployment-rollout-status.sh"
+             }
+           }
+         )
+       }
+     }
 
  //    stage('Integration Tests - DEV') {
  //      steps {
