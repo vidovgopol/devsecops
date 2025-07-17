@@ -67,12 +67,8 @@ pipeline {
 
      stage('Docker Build and Push') {
        steps {
-         withCredentials([
-                    string(credentialsId: 'docker_user', variable: 'DOCKER_USER'),
-                    string(credentialsId: 'docker_pass', variable: 'DOCKER_PASS')
-                ]) {
+         withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
            sh 'printenv'
-           sh 'echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY -u "$DOCKER_USER" --password-stdin'
            sh 'docker build -t vidovgopol/numeric-app:""$GIT_COMMIT"" .'
            sh 'docker push vidovgopol/numeric-app:""$GIT_COMMIT""'
          }
